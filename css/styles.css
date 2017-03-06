@@ -6,6 +6,38 @@ html, body {
   height: 100%;
 }
 
+/* util classes */
+
+.p-05 {
+  padding: 2px;
+}
+
+.pt-05 {
+  padding-top: 2px;
+}
+
+.pr-05 {
+  padding-right: 2px;
+}
+
+.pb-05 {
+  padding-bottom: 2px;
+}
+
+.pl-05 {
+  padding-left: 2px;
+}
+
+.px-05 {
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+.py-05 {
+  padding-bottom: 2px;
+  padding-top: 2px;
+}
+
 /* website footer */
 
 #website-footer {
@@ -265,6 +297,25 @@ html, body {
   top: 50%;
 }
 
+#main-content #server-list-container .server .actions .btn {
+  background: #2C2F33;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+#main-content #server-list-container .server .actions .join {
+  width: 100%;
+}
+
+#main-content #server-list-container .server .actions .join .btn {
+  height: 32px !important;
+  padding: 6px 16px;
+}
+
+#main-content #server-list-container .server .actions .btn.selected {
+  background: #99AAB5;
+}
+
 #main-content #server-list-container .server .server-footer {
   color: #cccccc;
   font-size: 0.8em;
@@ -348,6 +399,15 @@ html, body {
 
   #main-content {
     bottom: 188px;
+  }
+
+  #main-content #server-list-container .server .server-body .actions .voting {
+    display: inline-block;
+    width: 128px;
+  }
+
+  #main-content #server-list-container .server .actions .join {
+    width: auto;
   }
 
   /* site navigation buttons */

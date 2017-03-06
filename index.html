@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Discord Server Listings</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8" />
+
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="css/tether/tether.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <script src="https://use.fontawesome.com/7027cc4d94.js"></script>
+  </head>
+  <body>
+    <div id="main-content">
+      <div class="show-sidebar"><i class="fa fa-bars" aria-hidden="true"></i></div>
+      <img src="img/discord-banner.jpg" alt="Discord: Free Voice and Text Chat For Gamers" class="page-banner w-100" />
+      <div class="homepage page-content px-2 py-1">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac molestie est. Quisque eget sem rutrum,
+          aliquet sem id, scelerisque dui. Fusce ac interdum est. Aenean luctus vitae ex quis porttitor. Aliquam
+          lectus est, efficitur ut elit feugiat, rutrum luctus ligula. Vivamus non pellentesque nulla. Cras eget mi
+          porta, iaculis dui placerat, egestas elit. Pellentesque finibus lacus quam, non tincidunt magna blandit a.
+        </p>
+        <p>
+          Nunc nec magna ornare, semper nunc nec, lacinia mauris. Curabitur sed consectetur mauris. Sed in porta
+          leo, eu pharetra tortor. Sed quis metus pharetra sapien lobortis fringilla. Donec nisi risus, ultrices in ex
+          vitae, elementum pretium eros. Suspendisse ornare, dui nec pretium suscipit, lectus turpis rhoncus lorem,
+          sit amet tincidunt dolor ipsum sit amet dolor. Vestibulum nunc nisl, aliquet eget felis dignissim,
+          consequat pretium nibh. Phasellus ac lacus ut magna tristique auctor vitae vel ante.
+        </p>
+        <div id="server-list">
+          <a href="servers.html" class="btn btn-lg rounded-0 text-center server-list-button">Go to server list</a>
+        </div><!--
+      --><div id="control-panel">
+          <a href="control.html" class="btn btn-lg rounded-0 text-center control-panel-button">Go to control panel</a>
+        </div>
+      </div>
+    </div>
+
+    <div id="page-overlay"></div>
+
+    <div id="sidebar">
+      <div class="sidebar-background"></div>
+      <div class="sidebar-inner-content">
+        <div class="site-logo mb-2">
+          <img src="img/logo.png" alt="Discord Server List logo" class="w-100" />
+        </div>
+        <button id="sign-in" class="w-100 btn btn-sm rounded-0 text-left">
+          <img src="img/discord-logo.png" alt="Discord" class="discord-logo d-logo" />
+          Sign in with
+          <img src="img/discord-wordmark.png" alt="Discord" class="discord-logo d-workmark" />
+        </button>
+        <hr class="separator mb-1" />
+        <div id="filters" class="mb-2">
+          <p class="section-header text-center">Filters</p>
+          <div class="filter type">
+            <p class="filter-name mb-1">By type</p>
+            <div class="options">
+              <div class="option">
+                <div id="type-option-gaming-display" class="option-display rounded">
+                  <div class="fa fa-check check rounded"></div>
+                </div>
+                <label for="type-option-gaming" class="option-label">Gaming</label>
+                <input type="checkbox" id="type-option-gaming" class="filter-option option-gaming hidden-xs-up" data-type="gaming" />
+              </div>
+              <div class="option">
+                <div id="type-option-support-display" class="option-display rounded">
+                  <div class="fa fa-check check rounded"></div>
+                </div>
+                <label for="type-option-support" class="option-label">Support</label>
+                <input type="checkbox" id="type-option-support" class="filter-option option-support hidden-xs-up" data-type="support" />
+              </div>
+            </div>
+          </div>
+          <div class="filter gaming">
+            <p class="filter-name">Gaming servers</p>
+          </div>
+          <div class="filter support">
+            <p class="filter-name">Support servers</p>
+          </div>
+        </div>
+        <div class="search input-group input-group-sm">
+          <span class="sidebar-search-icon input-group-addon border-0">
+            <i class="fa fa-search"></i>
+          </span>
+          <input type="text" name="search" placeholder="Search..." class="sidebar-search-text-input pl-1 w-100 border-0 rounded-0" />
+          <span class="input-group-btn border-0">
+            <button class="sidebar-search-button btn btn-secondary border-0">Go</button>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div id="website-footer">
+      <div class="upper">
+        <div class="sm-icons">
+          <a href="#" class="sm-icon">
+            <picture id="sm-discord">
+              <source media="(min-width: 48em) and (min-height: 768px)" srcset="img/sm-icons/discord/lg.png" />
+              <source media="(min-width: 34em) and (min-height: 480px)" srcset="img/sm-icons/discord/md.png" />
+              <img src="img/sm-icons/discord/rsz_sm.png" alt="DSL Discord server" />
+            </picture>
+          </a>
+          <a href="#" class="sm-icon">
+            <picture id="sm-fb">
+              <source media="(min-width: 48em) and (min-height: 768px)" srcset="img/sm-icons/fb/lg.png" />
+              <source media="(min-width: 34em) and (min-height: 480px)" srcset="img/sm-icons/fb/md.png" />
+              <img src="img/sm-icons/fb/rsz_sm.png" alt="DSL on Facebook" />
+            </picture>
+          </a>
+          <a href="#" class="sm-icon">
+            <picture id="sm-steam">
+              <source media="(min-width: 48em) and (min-height: 768px)" srcset="img/sm-icons/steam/lg.png" />
+              <source media="(min-width: 34em) and (min-height: 480px)" srcset="img/sm-icons/steam/md.png" />
+              <img src="img/sm-icons/steam/rsz_sm.png" alt="DSL on Steam" />
+            </picture>
+          </a>
+          <a href="#" class="sm-icon">
+            <picture id="sm-twitter">
+              <source media="(min-width: 48em) and (min-height: 768px)" srcset="img/sm-icons/twitter/lg.png" />
+              <source media="(min-width: 34em) and (min-height: 480px)" srcset="img/sm-icons/twitter/md.png" />
+              <img src="img/sm-icons/twitter/rsz_sm.png" alt="DSL on Twitter" />
+            </picture>
+          </a>
+        </div>
+      </div>
+
+      <div class="lower">
+        <p class="copy">&copy; (2016-present) Zuris.</p>
+        <div class="contact">
+          <button class="open-contact-form btn btn-sm rounded-0">Contact us</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- NOTE: GoogleAPIs jQuery script file -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+      //<![CDATA[
+        // If GoogleAPIs CDN is unavailable for ANY reason, fallback to local jQuery script file.
+        // Commented CDATA tag is to prevent web spiders (googlebot, etc.) crawling amy link(s)
+        // found within the code.
+        window.jQuery || document.write("<script src=\"js/jquery-3.1.1.min.js\"><\/script>");
+      //]]>
+    </script>
+
+    <!-- NOTE: Normal scripts go here -->
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/tether.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

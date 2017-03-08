@@ -95,4 +95,10 @@ $(document).ready(function () {
     window.clearTimeout(screenSizeChange);
     screenSizeChange = window.setTimeout(screenSizeChangeHandler, 250);
   }).trigger('resize');
+
+  $('a.external-link', '#server-list-container').each(function(index, el) {
+    var $el = $(el);
+    console.log('Setting data-domain to ' + el.hostname);
+    $el.attr('data-domain', el.hostname);
+  });
 });

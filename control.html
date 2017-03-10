@@ -32,33 +32,9 @@
           <img src="img/discord-wordmark.png" alt="Discord" class="discord-logo d-workmark" />
         </button>
         <hr class="separator mb-1" />
-        <div id="filters" class="mb-2">
-          <p class="section-header text-center">Filters</p>
-          <div class="filter type">
-            <p class="filter-name mb-1">By type</p>
-            <div class="options">
-              <div class="option">
-                <div id="type-option-gaming-display" class="option-display rounded">
-                  <div class="fa fa-check check rounded"></div>
-                </div>
-                <label for="type-option-gaming" class="option-label">Gaming</label>
-                <input type="checkbox" id="type-option-gaming" class="filter-option option-gaming hidden-xs-up" data-type="gaming" />
-              </div>
-              <div class="option">
-                <div id="type-option-support-display" class="option-display rounded">
-                  <div class="fa fa-check check rounded"></div>
-                </div>
-                <label for="type-option-support" class="option-label">Support</label>
-                <input type="checkbox" id="type-option-support" class="filter-option option-support hidden-xs-up" data-type="support" />
-              </div>
-            </div>
-          </div>
-          <div class="filter gaming">
-            <p class="filter-name">Gaming servers</p>
-          </div>
-          <div class="filter support">
-            <p class="filter-name">Support servers</p>
-          </div>
+        <p class="section-header text-center">Servers</p>
+        <div id="sidebar-server-list" class="mb-2">
+
         </div>
         <div class="search input-group input-group-sm">
           <span class="sidebar-search-icon input-group-addon border-0">
@@ -130,5 +106,6 @@
     <script src="js/tether.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/control.js"></script>
   </body>
 </html>

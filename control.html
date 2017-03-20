@@ -14,7 +14,22 @@
     <div id="main-content">
       <div class="show-sidebar"><i class="fa fa-bars" aria-hidden="true"></i></div>
       <div class="control page-content px-2 py-1">
+        <div id="index-page">
+          <a href="index.html" class="btn btn-sm rounded-0 text-center index-page-button">Back to homepage</a>
+        </div><!--
+      --><div id="server-list">
+          <a href="servers.html" class="btn btn-sm rounded-0 text-center server-list-button">Go to server list</a>
+        </div>
 
+        <div id="control-frame" data-index="null">
+          <div class="control">
+            <p class="server-name display-5 d-inline-block static-field"></p>
+            <input name="server-name" aria-hidden="true" class="server-name display-5 editing-field" />
+            <button class="field-actions btn btn-sm rounded-0" aria-hidden="true" data-action="edit" data-field="#control-frame .server-name">
+              <i class="fa fa-pencil"></i>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -33,9 +48,7 @@
         </button>
         <hr class="separator mb-1" />
         <p class="section-header text-center">Servers</p>
-        <div id="sidebar-server-list" class="mb-2">
-
-        </div>
+        <div id="sidebar-server-list" class="mb-2"></div><!--
         <div class="search input-group input-group-sm">
           <span class="sidebar-search-icon input-group-addon border-0">
             <i class="fa fa-search"></i>
@@ -45,7 +58,7 @@
             <button class="sidebar-search-button btn btn-secondary border-0">Go</button>
           </span>
         </div>
-      </div>
+   --></div>
     </div>
 
     <div id="website-footer">

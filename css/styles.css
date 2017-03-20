@@ -38,6 +38,12 @@ html, body {
   padding-top: 2px;
 }
 
+.display-5 {
+  font-size: 2.5rem;
+  font-weight: 300;
+  line-height: 1.1;
+}
+
 /* website footer */
 
 #website-footer {
@@ -177,7 +183,7 @@ html, body {
   height: 14px;
 }
 
-#sidebar #filters .section-header {
+#sidebar .section-header {
   font-family: 'PT Sans', 'Helvetica Nue', Helvetica, sans-serif;
   font-size: 1.5em;
 }
@@ -208,6 +214,25 @@ html, body {
 
 #sidebar #filters .filter .options .option .option-display .check.hidden {
   display: none !important;
+}
+
+/* sidebar server list - shows only
+   on control.html */
+
+#sidebar-server-list .server {
+  cursor: pointer;
+  position: relative;
+}
+
+#sidebar-server-list .server:hover {
+  background-color: #23272A;
+}
+
+
+#sidebar-server-list .user-count,
+#sidebar-server-list .short-desc,
+#sidebar-server-list .invite {
+  font-size: 0.75em;
 }
 
 /* page overlay - shows when sidebar
@@ -373,6 +398,46 @@ html, body {
   font-weight: normal;
 }
 
+#main-content .control.page-content {
+  min-height: 100%;
+}
+
+#main-content #control-frame {
+  display: none;
+}
+
+#main-content #control-frame .field-actions {
+  background: none;
+  position: relative;
+  transform: translateY(-25%);
+  top: 50%;
+}
+
+#main-content #control-frame .server-name {
+  min-height: 44px;
+}
+
+#main-content #control-frame .server-name.editing-field {
+  margin-bottom: 9px;
+  min-height: 44px;
+}
+
+#main-content #control-frame .static-field {
+  display: none;
+}
+
+#main-content #control-frame .editing-field {
+  background: none;
+  border: none;
+  color: #ffffff;
+  display: none;
+  font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  padding: 0;
+  position: relative;
+  line-height: 2.5rem !important;
+  top: -4px;
+}
+
 /* site navigation buttons */
 
 #control-panel,
@@ -381,13 +446,22 @@ html, body {
   display: block;
 }
 
-#control-panel {
+.homepage #control-panel {
   padding-bottom: 4px;
   padding-top: 4px;
 }
 
-#server-list {
+.homepage #server-list {
   padding-bottom: 4px;
+}
+
+.control #index-page {
+  padding-bottom: 4px;
+  padding-top: 4px;
+}
+
+.control #server-list {
+    padding-bottom: 4px;
 }
 
 #control-panel .control-panel-button,
@@ -444,20 +518,37 @@ html, body {
 
   /* site navigation buttons */
 
-  #control-panel,
-  #server-list {
+  .homepage #control-panel,
+  .homepage #server-list {
     box-sizing: border-box;
     display: inline-block;
     padding: auto;
   }
 
-  #control-panel {
+  .homepage #control-panel {
     padding-left: 2px;
     width: 50%;
   }
 
-  #server-list {
+  .homepage #server-list {
     padding-right: 2px;
+    width: 50%;
+  }
+
+  .control #index-page,
+  .control #server-list {
+    box-sizing: border-box;
+    display: inline-block;
+    padding: auto;
+  }
+
+  .control #index-page {
+    padding-right: 2px;
+    width: 50%;
+  }
+
+  .control #server-list {
+    padding-left: 2px;
     width: 50%;
   }
 }

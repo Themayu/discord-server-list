@@ -44,6 +44,12 @@ html, body {
   line-height: 1.1;
 }
 
+.display-6 {
+  font-size: 1.5rem;
+  font-weight: 300;
+  line-height: 1.1;
+}
+
 /* website footer */
 
 #website-footer {
@@ -228,7 +234,6 @@ html, body {
   background-color: #23272A;
 }
 
-
 #sidebar-server-list .user-count,
 #sidebar-server-list .short-desc,
 #sidebar-server-list .invite {
@@ -404,6 +409,7 @@ html, body {
 
 #main-content #control-frame {
   display: none;
+  position: relative;
 }
 
 #main-content #control-frame .field-actions {
@@ -436,6 +442,56 @@ html, body {
   position: relative;
   line-height: 2.5rem !important;
   top: -4px;
+}
+
+#main-content #control-frame .server-icon {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 60px;
+}
+
+#main-content #control-frame .server-icon .icon {
+  background: #23272A;
+  border-color: #2C2F33;
+  border-style: solid;
+  border-width: 2px;
+}
+
+#main-content #control-frame .server-icon .icon-text {
+  height: 60px;
+  text-align: center;
+  width: 60px;
+}
+
+#main-content #control-frame .server-icon .icon-text .text {
+  position: relative;
+  transform: translateY(-50%);
+  top: 50%;
+}
+
+#main-content #control-frame .server-icon-shadow {
+  box-shadow: inset 0px 0px 10px rgba(0,0,0,0.9);
+  height: 60px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 60px;
+}
+
+#main-content #control-frame .control-box {
+  background: #99AAB5;
+  position: relative;
+}
+
+#main-content #control-frame .control-box .field-actions {
+  position: absolute;
+  left: 115px;
+  top: 8px;
+}
+
+#textbox-sizing {
+  visibility: hidden;
 }
 
 /* site navigation buttons */

@@ -16,7 +16,8 @@ $(document).ready(function() {
                      'werewolves, angels, dragons, etc., anything that comes to mind.',
       'icon': {
         'type': 'icon',
-        'content': 'https://cdn.discordapp.com/icons/259536826304430080/8971ff3789a4ead9d0dad08106fd8af1.png'
+        'content': 'https://cdn.discordapp.com/icons/259536826304430080/0bf37265180baa680ceed62b805c9a00.png',
+        'text': 'P'
       },
       'rank': 1,
       'rating': 1,
@@ -57,16 +58,47 @@ $(document).ready(function() {
     var $staticField = $($field.get(0));
     var $editor = $($field.get(1));
 
+    $editor.keyup(resizeTextBox);
+    console.log('bound textbox');
+
     $(this).css({transform: 'translateY(-50%)'}).children('i').removeClass('fa-pencil').addClass('fa-floppy-o');
     $staticField.removeClass('d-inline-block');
     $editor.css({width: $staticField.width() + 'px', height: Math.ceil($staticField.height()*1.1)+2}).val($staticField.text()).addClass('d-inline-block');
-    console.log($field, $staticField, $editor, $editor.get(0).value.width);
 
     $(this).off('click').click(saveAndHideEditor);
   }
 
   var saveAndHideEditor = function(e) {
+    var $field = $($(this).data('field'));
+    var $staticField = $($field.get(0));
+    var $editor = $($field.get(1));
+    var fieldvalue = $editor.val();
+    var cp = $('#control-frame');
+    var id = parseInt(cp.attr('data-index'));
+
+    $staticField.text(fieldvalue);
+    exampleServerData[id][$editor.attr('name')] = fieldvalue;
+
+    $editor.off('keyup');
+
+    $(this).css({transform: 'translateY(-25%)'}).children('i').removeClass('fa-floppy-o').addClass('fa-pencil');
+    $staticField.addClass('d-inline-block');
+    $editor.css({width: $staticField.width() + 'px', height: Math.ceil($staticField.height()*1.1)+2}).removeClass('d-inline-block');
+
+    buildServerList();
+
     $(this).off('click').click(showEditor);
+  }
+
+  var resizeTextBox = function(e) {
+    var minWidth = 150;
+    var currentWidth;
+    $textboxSizingBox.text($(this).val());
+    currentWidth = $textboxSizingBox.width();
+
+    $(this).css({width: ((currentWidth <= minWidth)? minWidth : currentWidth)});
+
+    console.log(currentWidth);
   }
 
   var showServerPanel = function() {
@@ -74,19 +106,50 @@ $(document).ready(function() {
     var id = parseInt($(this).data('id'));
     cp.attr('data-index', id);
 
-    cp.find('.server-name').text(exampleServerData[id]['server-name']);
+    var $serverName = cp.find('.server-name');
+    var $serverIcon = cp.find('.server-icon');
+    var $serverDesc = cp.find('.description');
+
+    $serverName.text(exampleServerData[id]['server-name']);
+    $serverIcon.empty();
+
+    if (exampleServerData[id]['icon']['type'] === 'icon') {
+      $serverIcon.append(
+        '<img src="' +
+        exampleServerData[id]['icon']['content'] +
+        '" alt="' +
+        exampleServerData[id]['server-name'] +
+        ' icon" class="w-100 rounded icon" />'
+      )
+    } else {
+      $serverIcon.append(
+        '<div class="icon-text icon rounded" aria-label="' +
+        exampleServerData[id]['server-name'] +
+        ' icon"><p class="text">' +
+        exampleServerData[id]['icon']['text']) +
+        '</p></div>'
+    }
+
+    $serverDesc.text(exampleServerData[id]['description']);
 
     cp.css({display: 'block'});
 
     cp.find('.server-name + .field-actions').click(showEditor);
   }
 
-  var serverList = '';
-  var index = 0;
+  var serverList;
+  var $textboxSizingBox = $('#textbox-sizing');
 
-  $.each(exampleServerData, assembleSidebarServerEntry);
+  var buildServerList = function() {
+    serverList = '';
+    var index = 0;
 
-  $('#sidebar-server-list').html(serverList);
+    $.each(exampleServerData, assembleSidebarServerEntry);
 
-  $('.server', '#sidebar-server-list').click(showServerPanel);
+    $('#sidebar-server-list').html(serverList);
+
+    $('.server', '#sidebar-server-list').click(showServerPanel);
+  }
+
+  buildServerList();
 });

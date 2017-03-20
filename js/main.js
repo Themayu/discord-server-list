@@ -1,3 +1,14 @@
+var truncateStr = function (str, len) {
+  var currLen = str.length;
+  var retStr = str;
+
+  if (currLen > len) {
+    retStr = (str.substr(0, len) + '...');
+  }
+
+  return retStr;
+}
+
 $(document).ready(function () {
   var $sb = $('#sidebar');
   var $showSb = $('#main-content .show-sidebar');

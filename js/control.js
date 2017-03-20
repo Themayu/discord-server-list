@@ -61,9 +61,9 @@ $(document).ready(function() {
     $editor.keyup(resizeTextBox);
     console.log('bound textbox');
 
-    $(this).css({transform: 'translateY(-50%)'}).children('i').removeClass('fa-pencil').addClass('fa-floppy-o');
+    $(this).children('i').removeClass('fa-pencil').addClass('fa-floppy-o');
     $staticField.removeClass('d-inline-block');
-    $editor.css({width: $staticField.width() + 'px', height: Math.ceil($staticField.height()*1.1)+2}).val($staticField.text()).addClass('d-inline-block');
+    $editor.css({width: $staticField.width() + 'px', height: Math.ceil($staticField.height()*1.1)+2, fontFamily: $staticField.css('font-family')}).val($staticField.text()).addClass('d-inline-block');
 
     $(this).off('click').click(saveAndHideEditor);
   }
@@ -81,9 +81,9 @@ $(document).ready(function() {
 
     $editor.off('keyup');
 
-    $(this).css({transform: 'translateY(-25%)'}).children('i').removeClass('fa-floppy-o').addClass('fa-pencil');
+    $(this).children('i').removeClass('fa-floppy-o').addClass('fa-pencil');
     $staticField.addClass('d-inline-block');
-    $editor.css({width: $staticField.width() + 'px', height: Math.ceil($staticField.height()*1.1)+2}).removeClass('d-inline-block');
+    $editor.removeClass('d-inline-block');
 
     buildServerList();
 
@@ -106,9 +106,9 @@ $(document).ready(function() {
     var id = parseInt($(this).data('id'));
     cp.attr('data-index', id);
 
-    var $serverName = cp.find('.server-name');
-    var $serverIcon = cp.find('.server-icon');
-    var $serverDesc = cp.find('.description');
+    var $serverName = cp.find('.server-name:not(textarea)');
+    var $serverIcon = cp.find('.server-icon:not(textarea)');
+    var $serverDesc = cp.find('.description:not(textarea)');
 
     $serverName.text(exampleServerData[id]['server-name']);
     $serverIcon.empty();
@@ -135,6 +135,7 @@ $(document).ready(function() {
     cp.css({display: 'block'});
 
     cp.find('.server-name + .field-actions').click(showEditor);
+    cp.find('.description + .field-actions').click(showEditor);
   }
 
   var serverList;

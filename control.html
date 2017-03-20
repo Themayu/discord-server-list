@@ -24,8 +24,8 @@
         <div id="control-frame" data-index="null">
           <div class="control mb-1">
             <p class="server-name display-5 d-inline-block static-field"></p>
-            <input name="server-name" aria-hidden="true" class="server-name display-5 editing-field" />
-            <button class="field-actions btn btn-sm rounded-0" aria-hidden="true" data-action="edit" data-field="#control-frame .server-name">
+            <textarea name="server-name" aria-hidden="true" class="server-name display-5 editing-field"></textarea>
+            <button class="field-actions btn btn-sm rounded-0 t-50" aria-hidden="true" data-action="edit" data-field="#control-frame .server-name">
               <i class="fa fa-pencil"></i>
             </button>
 
@@ -33,14 +33,22 @@
             <div class="server-icon-shadow rounded"></div>
           </div>
 
-          <div class="description-box control-box">
-            <div class="display-6">Description</div>
-            <div class="control">
-              <button class="field-actions btn btn-sm rounded-0" aria-hidden="true" data-action="edit" data-field="#control-frame .description-box .description">
-                <i class="fa fa-pencil"></i>
-              </button>
+          <div class="description-box control-box d-inline-block">
+            <div class="inner-container">
+              <div class="display-6 mb-1">Description</div>
+              <div class="control">
+                <p class="description d-inline-block static-field m-0"></p>
+                <textarea name="description" aria-hidden="true" class="description editing-field m-0"></textarea>
+                <button class="field-actions btn btn-sm rounded-0" aria-hidden="true" data-action="edit" data-field="#control-frame .description-box .description">
+                  <i class="fa fa-pencil"></i>
+                </button>
+              </div>
+            </div>
+          </div><!--
 
-              <div class="description"></div>
+       --><div class="users-box control-box d-inline-block">
+            <div class="inner-container">
+              <p class="display-6 mb-1">User list</p>
             </div>
           </div>
         </div>

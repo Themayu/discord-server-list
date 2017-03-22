@@ -344,17 +344,20 @@ html, body {
   top: 50%;
 }
 
-#main-content #server-list-container .server .description a.external-link::before {
+#main-content #server-list-container .server .description a.external-link::before,
+#main-content #control-frame .description-box a.external-link::before {
   color: #2C2F33;
   content: '\f14c';
   font-family: 'FontAwesome';
 }
 
-#main-content #server-list-container .server .description a.external-link {
-  color: #FFFFFF;
+#main-content #server-list-container .server .description a.external-link,
+#main-content #control-frame .description-box a.external-link {
+  color: #23272A;
 }
 
-#main-content #server-list-container .server .description a.external-link::after {
+#main-content #server-list-container .server .description a.external-link::after,
+#main-content #control-frame .description-box a.external-link::after {
   content: '(' attr(data-domain) ')';
   font-size: 12px;
 }
@@ -483,11 +486,14 @@ html, body {
   width: 60px;
 }
 
-#main-content #control-frame .control-box {
-  margin-bottom: 10px;
+#main-content #control-frame .column {
   position: relative;
   vertical-align: top;
   width: 100%;
+}
+
+#main-content #control-frame .control-box {
+  margin-bottom: 10px;
 }
 
 #main-content #control-frame .control-box .inner-container {
@@ -505,6 +511,40 @@ html, body {
   border-color: #2C2F33;
   border-style: solid;
   border-width: 1px;
+}
+
+#main-content #control-frame .messages-box .message {
+  border-color: #2C2F33;
+  border-style: inset;
+  border-width: 1px;
+}
+
+#main-content #control-frame .messages-box .message .msg-header,
+#main-content #control-frame .messages-box .message .msg-footer {
+  font-size: 85%;
+}
+
+#main-content #control-frame .messages-box .message .msg-header {
+  height: 1.5em;
+  position: relative;
+}
+
+#main-content #control-frame .messages-box .message .msg-header .msg-author,
+#main-content #control-frame .messages-box .message .msg-header .msg-channel {
+  position: absolute;
+}
+
+#main-content #control-frame .messages-box .message .msg-header .msg-author {
+  left: 0;
+}
+
+#main-content #control-frame .messages-box .message .msg-header .msg-channel {
+  right: 0;
+}
+
+#main-content #control-frame .messages-box .message .msg-content {
+  font-size: 75%;
+  white-space: pre-wrap;
 }
 
 #textbox-sizing {
@@ -590,16 +630,16 @@ html, body {
     width: auto;
   }
 
-  #main-content #control-frame .control-box {
+  #main-content #control-frame .column {
     width: 50%;
   }
 
-  #main-content #control-frame .description-box,
-  #main-content #control-frame .stats-box {
+  #main-content #control-frame .left-column {
     padding-right: 5px;
   }
 
-  #main-content #control-frame .users-box {
+  #main-content #control-frame .users-box,
+  #main-content #control-frame .stats-box {
     padding-left: 5px;
   }
 
@@ -638,6 +678,17 @@ html, body {
     padding-left: 2px;
     width: 50%;
   }
+}
+
+/* contact menu */
+
+#website-contact-menu .menu-bg {
+  bottom:0;
+  left:0;
+  position: 'absolute';
+  right:0;
+  top:0;
+  z-index: 9999;
 }
 
 /* medium screens, landscape override */

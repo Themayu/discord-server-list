@@ -48,8 +48,90 @@ $(document).ready(function() {
       'example-users': [
         {username: 'Alex', discriminator: '1571'},
         {username: 'Cherry The Meme', discriminator: '3763'},
-        {username: 'Zuris', discriminator: '4495'},
-        {username: 'Teruko', discriminator: '9136'}
+        {username: 'Teruko', discriminator: '9136'},
+        {username: 'Zuris', discriminator: '4495'}
+      ]
+    },
+    {
+      'description': 'Chat for Hacker\'s Edge, a highly realistic online hacking game located <a href="http://www.hackers-edge.com/" class="external-link">\nhere\n</a>.',
+      'icon': {
+        'type': 'text',
+        'content': null,
+        'text': 'H\'sE'
+      },
+      'rank': 2,
+      'rating': 0,
+      'server-name': "Hacker's Edge",
+      'user-count': 6,
+      'channel-count': 2,
+      'invite': 'R7gs88h',
+      'example-messages': [
+        {
+          channel: '#general',
+          from: 'chronoboy#3402',
+          message: "One of the main ideas behind Hacker's Edge is to create a sandbox environment which is semi-realistic.  It allows for a safe environment where one can play around with realistic hacking ideas, as Hacker's Edge provides a virtual Internet consistenting of working Virtual Machines which run real machine code and have the ability to communicate to each other over said virtual Internet.  Players are free to modify raw memory addresses, assemble machine code, run port scanning tools, send out raw packet data to other in-game machines, and so on.",
+          timestamp: '1490141760'
+        },
+        {
+          channel: '#spam',
+          from: 'bauen1#3624',
+          message: "removes everything in the ascii range 128-255 from the stream",
+          timestamp: '1458330000'
+        }
+      ],
+      'example-users': [
+        {username: 'AdminUtils', discriminator: '4635 [Bot user]'},
+        {username: 'chronoboy', discriminator: '3402'},
+        {username: 'IAmSilK', discriminator: '0348'},
+        {username: 'LightkillerX', discriminator: '4866'},
+        {username: 'Missingno50', discriminator: '3997'},
+        {username: 'Zuris', discriminator: '4495'}
+      ]
+    },
+    {
+      'description': 'The Programmer\'s Hangout (TPH) is a small, community driven discord in which you are free' +
+      'to discuss and learn anything related to computer science, programming, or technology in general. If you' +
+      'would like to know more about us, read the info channel, #info.\nWelcome and enjoy your stay :)',
+      'icon': {
+        'type': 'icon',
+        'content': 'https://cdn.discordapp.com/icons/244230771232079873/37843453ef2b855d227be2f558e18070.png',
+        'text': 'TP\'sH'
+      },
+      'rank': 3,
+      'rating': 0,
+      'server-name': "The Programmer's Hangout",
+      'user-count': 3,
+      'channel-count': 5,
+      'invite': 'BeWdRTp',
+      'example-messages': [
+        {
+          channel: '#general',
+          from: '🔥Fox#7705',
+          message: "Morning",
+          timestamp: '1490181900'
+        },
+        {
+          channel: '#javascript',
+          from: 'Pandito#4353',
+          message: "hey guys, I recently followed a guide on how to connect with google using OAuth, however it " +
+          "says that passport.authenticate isnt a function, which I cant find inside the passportfile either, any" +
+          " ideas how this works?Passport: http://pastebin.com/rdWgnw8g ,  Index.js http://pastebin.com/9XB7qGUd\n" +
+          "passport.authenticate is not a function\n\n" +
+          "TypeError: passport.authenticate is not a function\n" +
+          "   at module.exports (C:\Users\Oskar\Documents\GitHub\password-manager\password-manager\password-manager\routes\index.js:40:38)",
+          timestamp: '1490129640'
+        },
+        {
+          channel: '#javascript',
+          from: 'TM™#6440',
+          message: "I'm trying to investigate your issue, but there's not much to investigate.",
+          timestamp: '1490130780'
+        }
+      ],
+      'example-users': [
+        {username: '🔥Fox', discriminator: '7705'},
+        {username: 'devoidfury', discriminator: '3045'},
+        {username: 'Zuris', discriminator: '4495'}
       ]
     }
   ]
@@ -74,7 +156,7 @@ $(document).ready(function() {
       width: Math.ceil($staticField.width()),
       height: Math.ceil($staticField.height()*1.1)+2,
       fontFamily: $staticField.css('font-family')
-    }).val($staticField.text()).addClass('d-inline-block');
+    }).val($staticField.html()).addClass('d-inline-block').focus();
 
     $(this).off('click').click(saveAndHideEditor);
   }
@@ -87,7 +169,7 @@ $(document).ready(function() {
     var cp = $('#control-frame');
     var id = parseInt(cp.attr('data-index'));
 
-    $staticField.text(fieldvalue);
+    $staticField.html(fieldvalue);
     exampleServerData[id][$editor.attr('name')] = fieldvalue;
 
     $editor.off('keyup');
@@ -125,6 +207,7 @@ $(document).ready(function() {
     var $serverDesc = cp.find('.description:not(textarea)');
     var   $userList = cp.find('.user-list');
     var $statistics = cp.find('.stats-box');
+    var   $messages = cp.find('.messages');
 
     var $serverRatings = $statistics.find('.rating-number');
     var    $serverRank = $statistics.find('.rank-number');
@@ -150,9 +233,10 @@ $(document).ready(function() {
         '</p></div>'
     }
 
-    $serverDesc.text(exampleServerData[id]['description']);
+    $serverDesc.html(exampleServerData[id]['description']);
 
     buildUserList(exampleServerData[id]['example-users']);
+    buildMessageList(exampleServerData[id]['example-messages']);
 
     $serverRatings.text(exampleServerData[id]['rating']);
     $serverRank.text(exampleServerData[id]['rank']);
@@ -162,21 +246,75 @@ $(document).ready(function() {
 
     cp.find('.server-name + .field-actions').click(showEditor);
     cp.find('.description + .field-actions').click(showEditor);
+
+    $('a.external-link', '.description').each(function(index, el) {
+      var $el = $(el);
+      console.log('Setting data-domain to ' + el.hostname);
+      $el.attr('data-domain', el.hostname);
+    });
   }
 
   var serverList;
   var $textboxSizingBox = $('#textbox-sizing');
+
+  var buildMessageList = function(messages) {
+    var msgl = $('.messages');
+    msgl.empty();
+
+    $.each(messages, function(index, message) {
+      var     messageDOM = $('<div class="message mt-1 px-2 py-1"></div>');
+
+      var  messageHeader = $('<div class="msg-header"></div>');
+      var messageContent = $('<div class="msg-content"></div>');
+      var  messageFooter = $('<div class="msg-footer"></div>');
+
+      var  messageAuthor = $('<p class="msg-author m-0"></p>');
+      var messageChannel = $('<p class="msg-channel m-0"></p>');
+
+      var    messageTime = $('<p class="msg-time mb-0 pb-05"></p>');
+
+      var date = new Date(message.timestamp * 1000);
+
+      var formattedDate = new String().concat(
+        (date.getDate() <= 9)? '0' + date.getDate() : date.getDate(), '/',
+        (date.getMonth() <= 9)? '0' + date.getMonth() : date.getMonth(), '/',
+        date.getFullYear()
+      );
+      var formattedTime = new String().concat(
+        (date.getHours() <= 9)? '0' + date.getHours() : date.getHours(), ':',
+        (date.getMinutes() <= 9)? '0' + date.getMinutes() : date.getMinutes(), ':',
+        (date.getSeconds() <= 9)? '0' + date.getSeconds() : date.getSeconds()
+      );
+
+      messageContent.html(markup(message.message));
+      messageAuthor.text('From ' + message.from);
+      messageChannel.text('In ' + message.channel);
+      messageTime.text(formattedDate + ' ' + formattedTime);
+
+      messageAuthor.appendTo(messageHeader);
+      messageChannel.appendTo(messageHeader);
+
+      messageTime.appendTo(messageFooter);
+
+      messageHeader.appendTo(messageDOM);
+      messageContent.appendTo(messageDOM);
+      messageFooter.appendTo(messageDOM);
+
+      messageDOM.appendTo(msgl);
+    });
+  }
 
   var buildUserList = function(users) {
     var ul = $('.user-list');
     ul.empty();
 
     $.each(users, function(index, user) {
-      var userDOM = $('<div class="user mb-1">' + user.username + '#' + user.discriminator + '</div>');
+      var userDOM = $('<div class="user mb-1 py-1 px-2">' + user.username + '#' + user.discriminator + '</div>');
       userDOM.appendTo(ul);
       console.log(userDOM);
     });
   }
+
   var buildServerList = function() {
     serverList = '';
     var index = 0;

@@ -22,7 +22,8 @@ $(document).ready(function() {
       'rank': 1,
       'rating': 1,
       'server-name': "Purgatory",
-      'user-count': 260,
+      'user-count': 4,
+      'channel-count': 3,
       'invite': 'BeWdRTp',
       'example-messages': [
         {
@@ -48,7 +49,7 @@ $(document).ready(function() {
         {username: 'Alex', discriminator: '1571'},
         {username: 'Cherry The Meme', discriminator: '3763'},
         {username: 'Zuris', discriminator: '4495'},
-        {username: 'Teruko', discriminator: '9136'},
+        {username: 'Teruko', discriminator: '9136'}
       ]
     }
   ]
@@ -58,12 +59,22 @@ $(document).ready(function() {
     var $staticField = $($field.get(0));
     var $editor = $($field.get(1));
 
+    $textboxSizingBox.appendTo($field.parent());
+    if ($(this).data('field') !== '#control-frame .server-name') {
+      $textboxSizingBox.removeClass('display-5');
+    } else {
+      $textboxSizingBox.addClass('display-5');
+    }
+
     $editor.keyup(resizeTextBox);
-    console.log('bound textbox');
 
     $(this).children('i').removeClass('fa-pencil').addClass('fa-floppy-o');
     $staticField.removeClass('d-inline-block');
-    $editor.css({width: $staticField.width() + 'px', height: Math.ceil($staticField.height()*1.1)+2, fontFamily: $staticField.css('font-family')}).val($staticField.text()).addClass('d-inline-block');
+    $editor.css({
+      width: Math.ceil($staticField.width()),
+      height: Math.ceil($staticField.height()*1.1)+2,
+      fontFamily: $staticField.css('font-family')
+    }).val($staticField.text()).addClass('d-inline-block');
 
     $(this).off('click').click(saveAndHideEditor);
   }
@@ -93,12 +104,15 @@ $(document).ready(function() {
   var resizeTextBox = function(e) {
     var minWidth = 150;
     var currentWidth;
+    var currentHeight;
     $textboxSizingBox.text($(this).val());
     currentWidth = $textboxSizingBox.width();
+    currentHeight = $textboxSizingBox.height();
 
-    $(this).css({width: ((currentWidth <= minWidth)? minWidth : currentWidth)});
-
-    console.log(currentWidth);
+    $(this).css({
+      width: ((currentWidth <= minWidth)? minWidth : currentWidth),
+      height: currentHeight
+    });
   }
 
   var showServerPanel = function() {
@@ -109,6 +123,12 @@ $(document).ready(function() {
     var $serverName = cp.find('.server-name:not(textarea)');
     var $serverIcon = cp.find('.server-icon:not(textarea)');
     var $serverDesc = cp.find('.description:not(textarea)');
+    var   $userList = cp.find('.user-list');
+    var $statistics = cp.find('.stats-box');
+
+    var $serverRatings = $statistics.find('.rating-number');
+    var    $serverRank = $statistics.find('.rank-number');
+    var $serverChanNum = $statistics.find('.channel-number');
 
     $serverName.text(exampleServerData[id]['server-name']);
     $serverIcon.empty();
@@ -132,6 +152,12 @@ $(document).ready(function() {
 
     $serverDesc.text(exampleServerData[id]['description']);
 
+    buildUserList(exampleServerData[id]['example-users']);
+
+    $serverRatings.text(exampleServerData[id]['rating']);
+    $serverRank.text(exampleServerData[id]['rank']);
+    $serverChanNum.text(exampleServerData[id]['channel-count']);
+
     cp.css({display: 'block'});
 
     cp.find('.server-name + .field-actions').click(showEditor);
@@ -141,6 +167,16 @@ $(document).ready(function() {
   var serverList;
   var $textboxSizingBox = $('#textbox-sizing');
 
+  var buildUserList = function(users) {
+    var ul = $('.user-list');
+    ul.empty();
+
+    $.each(users, function(index, user) {
+      var userDOM = $('<div class="user mb-1">' + user.username + '#' + user.discriminator + '</div>');
+      userDOM.appendTo(ul);
+      console.log(userDOM);
+    });
+  }
   var buildServerList = function() {
     serverList = '';
     var index = 0;

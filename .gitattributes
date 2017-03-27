@@ -1,0 +1,5 @@
+css/bootstrap/* linguist-vendored
+css/vendor/* linguist-vendored
+js/bootstrap* linguist-vendored
+js/jquery-* linguist-vendored
+js/tether* linguist-vendored

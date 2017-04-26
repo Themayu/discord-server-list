@@ -1,3 +1,24 @@
+var truncateStr = function (str, len) {
+  var currLen = str.length;
+  var retStr = str;
+
+  if (currLen > len) {
+    retStr = (str.substr(0, len) + '...');
+  }
+
+  return retStr;
+}
+
+var parseMD = function(markdown) {
+  var parsedBold = markdown.replace(/\*\*([^ ]*)\*\*/gi, '<strong>$1</strong>');
+  var parsedItal = parsedBold.replace(/\_([^ ]*)\_|\*([^ ].*)\*/gi, '<em>$1$2</em>');
+  var parsedPara = parsedItal.replace(/\n\n/gi, '</p><p>');
+  var parsedLnbr = parsedPara.replace(/\n/gi, '<br />');
+
+  var parsed = parsedLnbr;
+  return parsed;
+}
+
 $(document).ready(function () {
   var $sb = $('#sidebar');
   var $showSb = $('#main-content .show-sidebar');

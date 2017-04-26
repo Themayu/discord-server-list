@@ -74,7 +74,7 @@ $(document).ready(function() {
       width: Math.ceil($staticField.width()),
       height: Math.ceil($staticField.height()*1.1)+2,
       fontFamily: $staticField.css('font-family')
-    }).val($staticField.text()).addClass('d-inline-block');
+    }).val($staticField.html()).addClass('d-inline-block');
 
     $(this).off('click').click(saveAndHideEditor);
   }
@@ -87,7 +87,7 @@ $(document).ready(function() {
     var cp = $('#control-frame');
     var id = parseInt(cp.attr('data-index'));
 
-    $staticField.text(fieldvalue);
+    $staticField.html(fieldvalue);
     exampleServerData[id][$editor.attr('name')] = fieldvalue;
 
     $editor.off('keyup');
@@ -125,6 +125,7 @@ $(document).ready(function() {
     var $serverDesc = cp.find('.description:not(textarea)');
     var   $userList = cp.find('.user-list');
     var $statistics = cp.find('.stats-box');
+    var    $msgList = cp.find('.messages');
 
     var $serverRatings = $statistics.find('.rating-number');
     var    $serverRank = $statistics.find('.rank-number');
@@ -153,6 +154,7 @@ $(document).ready(function() {
     $serverDesc.text(exampleServerData[id]['description']);
 
     buildUserList(exampleServerData[id]['example-users']);
+    buildMessageList(exampleServerData[id]['example-messages']);
 
     $serverRatings.text(exampleServerData[id]['rating']);
     $serverRank.text(exampleServerData[id]['rank']);
@@ -167,12 +169,56 @@ $(document).ready(function() {
   var serverList;
   var $textboxSizingBox = $('#textbox-sizing');
 
+  var buildMessageList = function(messages) {
+    var messageBox = $('.messages');
+    messageBox.empty();
+
+    $.each(messages, function(index, msg) {
+      console.log('channel:', msg.channel);
+      console.log('from:', msg.from);
+      console.log('message:', parseMD(msg.message));
+      console.log('timestamp:', msg.timestamp);
+
+      var message = $('<div class="message small pb-05 px-1"></div>');
+      var messageHeader = $('<div class="message-header"></div>');
+      var messageContent = $('<div class="message-content small"></div>');
+      var messageFooter = $('<div class="message-footer"></div>');
+
+      var messageAuthor = $('<p class="message-author d-inline-block m-0"></p>');
+      var messageChannel = $('<p class="message-channel d-inline-block m-0 ml-1"></p>');
+
+      var messageTimestamp = $('<p class="message-timestamp m-0"></p>');
+
+      var messageDate = new Date(msg.timestamp*1000);
+      var formatDate = [
+        (messageDate.getDate() <= 9)? '0'.concat(messageDate.getDate()) : messageDate.getDate(),
+        (messageDate.getMonth() <= 9)? '0'.concat(messageDate.getMonth()) : messageDate.getMonth(),
+        messageDate.getFullYear()
+      ].join('/');
+      var formatTime = [
+        (messageDate.getHours() <= 9)? '0'.concat(messageDate.getHours()) : messageDate.getHours(),
+        (messageDate.getMinutes() <= 9)? '0'.concat(messageDate.getMinutes()) : messageDate.getMinutes(),
+        (messageDate.getSeconds() <= 9)? '0'.concat(messageDate.getSeconds()) : messageDate.getSeconds()
+      ].join(':');
+
+      messageTimestamp.text(formatDate + ' ' + formatTime).appendTo(messageFooter);
+      messageAuthor.text('From ' + msg.from + ',').appendTo(messageHeader);
+      messageChannel.text('in ' + msg.channel + '.').appendTo(messageHeader);
+      messageContent.html('<p>' + parseMD(msg.message) + '</p>');
+
+      messageHeader.appendTo(message);
+      messageContent.appendTo(message);
+      messageFooter.appendTo(message);
+
+      message.appendTo(messageBox);
+    });
+  }
   var buildUserList = function(users) {
     var ul = $('.user-list');
     ul.empty();
 
     $.each(users, function(index, user) {
-      var userDOM = $('<div class="user mb-1">' + user.username + '#' + user.discriminator + '</div>');
+      var userDOM = $('<div class="user mb-1 px-1 py-05">' + user.username + '#' + user.discriminator + '</div>');
       userDOM.appendTo(ul);
       console.log(userDOM);
     });

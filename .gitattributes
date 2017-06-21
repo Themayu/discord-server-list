@@ -1,0 +1,15 @@
+# CSS for Bootstrap and Tether
+css/bootstrap/* linguist-vendored
+css/tether/* linguist-vendored
+
+# JS for Bootstrap
+js/bootstrap.js* linguist-vendored
+js/bootstrap.min.js* linguist-vendored
+
+# JS for jQuery (w/ UI)
+jquery-3.1.1.min.js linguist-vendored
+jquery-ui.min.js linguist-vendored
+
+# JS for Tether
+js/tether.js linguist-vendored
+js/tether.min.js linguist-vendored

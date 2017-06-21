@@ -272,6 +272,7 @@ html, body {
   border: 2px solid rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   box-sizing: border-box;
+  cursor: pointer;
   font-size: 1.2em;
   left: 0.5em;
   padding: 0 0.4em;
@@ -344,20 +345,17 @@ html, body {
   top: 50%;
 }
 
-#main-content #server-list-container .server .description a.external-link::before,
-#main-content #control-frame .description-box a.external-link::before {
+#main-content #server-list-container .server .description a.external-link::before {
   color: #2C2F33;
   content: '\f14c';
   font-family: 'FontAwesome';
 }
 
-#main-content #server-list-container .server .description a.external-link,
-#main-content #control-frame .description-box a.external-link {
-  color: #23272A;
+#main-content #server-list-container .server .description a.external-link {
+  color: #FFFFFF;
 }
 
-#main-content #server-list-container .server .description a.external-link::after,
-#main-content #control-frame .description-box a.external-link::after {
+#main-content #server-list-container .server .description a.external-link::after {
   content: '(' attr(data-domain) ')';
   font-size: 12px;
 }
@@ -486,13 +484,21 @@ html, body {
   width: 60px;
 }
 
-#main-content #control-frame .column {
+#main-content #control-frame .control-box:first-child {
+  margin-bottom: 10px;
   position: relative;
   vertical-align: top;
   width: 100%;
 }
 
-#main-content #control-frame .control-box {
+#main-content #control-frame .column {
+  margin-bottom: 5px;
+  position: relative;
+  vertical-align: top;
+  width: 100%;
+}
+
+#main-content #control-frame .left-column {
   margin-bottom: 10px;
 }
 
@@ -507,6 +513,12 @@ html, body {
   top: 8px;
 }
 
+#main-content #control-frame .users-box .user-list,
+#main-content #control-frame .messages-box .messages {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
 #main-content #control-frame .users-box .user-list .user {
   border-color: #2C2F33;
   border-style: solid;
@@ -514,37 +526,9 @@ html, body {
 }
 
 #main-content #control-frame .messages-box .message {
-  border-color: #2C2F33;
-  border-style: inset;
-  border-width: 1px;
-}
-
-#main-content #control-frame .messages-box .message .msg-header,
-#main-content #control-frame .messages-box .message .msg-footer {
-  font-size: 85%;
-}
-
-#main-content #control-frame .messages-box .message .msg-header {
-  height: 1.5em;
-  position: relative;
-}
-
-#main-content #control-frame .messages-box .message .msg-header .msg-author,
-#main-content #control-frame .messages-box .message .msg-header .msg-channel {
-  position: absolute;
-}
-
-#main-content #control-frame .messages-box .message .msg-header .msg-author {
-  left: 0;
-}
-
-#main-content #control-frame .messages-box .message .msg-header .msg-channel {
-  right: 0;
-}
-
-#main-content #control-frame .messages-box .message .msg-content {
-  font-size: 75%;
-  white-space: pre-wrap;
+  border: 1px solid #2C2F33;
+  margin-bottom: .25rem;
+  margin-top: .375rem;
 }
 
 #textbox-sizing {
@@ -631,6 +615,7 @@ html, body {
   }
 
   #main-content #control-frame .column {
+    margin-bottom: 5px;
     width: 50%;
   }
 
@@ -638,9 +623,14 @@ html, body {
     padding-right: 5px;
   }
 
-  #main-content #control-frame .users-box,
-  #main-content #control-frame .stats-box {
+  #main-content #control-frame .right-column {
     padding-left: 5px;
+  }
+
+  #main-content #control-frame .users-box .user-list,
+  #main-content #control-frame .messages-box .messages {
+    max-height: none;
+    overflow-y: visible;
   }
 
   /* site navigation buttons */
@@ -678,17 +668,6 @@ html, body {
     padding-left: 2px;
     width: 50%;
   }
-}
-
-/* contact menu */
-
-#website-contact-menu .menu-bg {
-  bottom:0;
-  left:0;
-  position: 'absolute';
-  right:0;
-  top:0;
-  z-index: 9999;
 }
 
 /* medium screens, landscape override */

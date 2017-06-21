@@ -9,14 +9,14 @@ var truncateStr = function (str, len) {
   return retStr;
 }
 
-var markup = function (string) {
-  var boldReplaced = string.replace(/\*\*(.*)\*\*/g, '<strong>$1</strong>');
-  var italReplaced = boldReplaced.replace(/\*(.*)\*/g, '<em>$1</em>');
-  var italFullRepl = italReplaced.replace(/\_(.*)\_/g, '<em>$1</em>');
+var parseMD = function(markdown) {
+  var parsedBold = markdown.replace(/\*\*([^ ]*)\*\*/gi, '<strong>$1</strong>');
+  var parsedItal = parsedBold.replace(/\_([^ ]*)\_|\*([^ ].*)\*/gi, '<em>$1$2</em>');
+  var parsedPara = parsedItal.replace(/\n\n/gi, '</p><p>');
+  var parsedLnbr = parsedPara.replace(/\n/gi, '<br />');
 
-  console.log(italFullRepl);
-
-  return italFullRepl;
+  var parsed = parsedLnbr;
+  return parsed;
 }
 
 $(document).ready(function () {
@@ -69,17 +69,6 @@ $(document).ready(function () {
     }
   }
 
-  var footerModal = $('#website-contact-menu');
-  var background = footerModal.find('.menu-bg');
-
-  var openContactFormModal = function (e) {
-    background.css('z-index', '9999').animate({color: '#000000'}, 400);
-  }
-
-  var closeContactFormModal = function (e) {
-    background.css('z-index', '-9999').animate({color: '#ffffff'}, 400);
-  }
-
   var sidebarHidden = true;
 
   window.addEventListener('orientationchange', function () {
@@ -119,11 +108,9 @@ $(document).ready(function () {
     e.stopImmediatePropagation();
   })
 
-  $('.open-contact-form').click(openContactFormModal);
-
   $('.filter-option').change(checkboxChangeHandler).siblings('div').click(function () {
     $(this).siblings('input').click();
-  })
+  });
 
   $(window).resize(function () {
     window.clearTimeout(screenSizeChange);

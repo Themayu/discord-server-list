@@ -11,17 +11,15 @@ $(document).ready(function() {
 
   var exampleServerData = [
     {
-      'description': 'A roleplay server taking place on a pair of islands, with portals between each one. ' +
-                     'Purgatory is a science-fantasy roleplay where almost anything is allowed: humans, ' +
-                     'werewolves, angels, dragons, etc., anything that comes to mind.',
+      'description': '[Content deleted, to be written later]',
       'icon': {
         'type': 'icon',
-        'content': 'https://cdn.discordapp.com/icons/259536826304430080/0bf37265180baa680ceed62b805c9a00.png',
-        'text': 'P'
+        'content': 'https://cdn.discordapp.com/icons/259536826304430080/4ff1ea43ebffe2eae529610f282c560d.png',
+        'text': 'C'
       },
       'rank': 1,
       'rating': 1,
-      'server-name': "Purgatory",
+      'server-name': "Cattlewater",
       'user-count': 4,
       'channel-count': 3,
       'invite': 'BeWdRTp',
@@ -48,7 +46,7 @@ $(document).ready(function() {
       'example-users': [
         {username: 'Alex', discriminator: '1571'},
         {username: 'Cherry The Meme', discriminator: '3763'},
-        {username: 'Zuris', discriminator: '4495'},
+        {username: 'Themayu', discriminator: '1563'},
         {username: 'Teruko', discriminator: '9136'}
       ]
     }

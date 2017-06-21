@@ -22,7 +22,7 @@ $(document).ready(function() {
       'server-name': "Cattlewater",
       'user-count': 4,
       'channel-count': 3,
-      'invite': 'BeWdRTp',
+      'invite': 'Gd4HBnT',
       'example-messages': [
         {
           channel: '#general',
